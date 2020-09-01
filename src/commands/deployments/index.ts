@@ -1,7 +1,7 @@
 import { flags } from '@oclif/command'
 import { Command } from '../base'
 export default class Hello extends Command {
-  static description = 'describe the command here'
+  static description = 'Create deployments'
 
   static examples = [
     `$ dplyr hello
