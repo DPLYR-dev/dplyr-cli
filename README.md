@@ -1,12 +1,12 @@
-dplyr
-=====
+dplyr-cli
+=========
 
-A CLI tool to manage DPLYR from
+A CLI tool to manage DPLYR
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/dplyr.svg)](https://npmjs.org/package/dplyr)
-[![Downloads/week](https://img.shields.io/npm/dw/dplyr.svg)](https://npmjs.org/package/dplyr)
-[![License](https://img.shields.io/npm/l/dplyr.svg)](https://github.com/dplyr-dev/dplyr-cli/blob/master/package.json)
+[![Version](https://img.shields.io/npm/v/dplyr-cli.svg)](https://npmjs.org/package/dplyr-cli)
+[![Downloads/week](https://img.shields.io/npm/dw/dplyr-cli.svg)](https://npmjs.org/package/dplyr-cli)
+[![License](https://img.shields.io/npm/l/dplyr-cli.svg)](https://github.com/dplyr-dev/dplyr-cli/blob/master/package.json)
 
 <!-- toc -->
 * [Usage](#usage)
@@ -15,11 +15,11 @@ A CLI tool to manage DPLYR from
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g dplyr
+$ npm install -g dplyr-cli
 $ dplyr COMMAND
 running command...
 $ dplyr (-v|--version|version)
-dplyr/0.0.1 darwin-x64 node-v10.13.0
+dplyr-cli/0.0.1 darwin-x64 node-v10.13.0
 $ dplyr --help [COMMAND]
 USAGE
   $ dplyr COMMAND

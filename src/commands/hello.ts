@@ -1,13 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { flags } from '@oclif/command'
-import { Command } from '../base'
-=======
-=======
->>>>>>> parent of b1c9c75... fix plugins 2 and format hello.ts
 import {Command, flags} from '@oclif/command'
 
->>>>>>> parent of b1c9c75... fix plugins 2 and format hello.ts
 export default class Hello extends Command {
   static description = 'describe the command here'
 
