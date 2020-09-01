@@ -24,18 +24,39 @@ hello world from ./src/hello.ts!
 
   async run() {
     const { args, flags } = this.parse(Hello)
-    var {token} = await inquirer.prompt({"type":"input", "name":"token"})
+    var { token } = await inquirer.prompt({ "type": "input", "name": "token" })
     var req;
     try {
       req = await axios.get("https://api.dplyr.dev/api/v1/requests/zapier", {
-        headers:{
-          "Authorization":"Token " + token
+        headers: {
+          "Authorization": "Token " + token
         }
       })
-    } catch (e){
+    } catch (e) {
       this.error(chalk.red("AUTH FAILED"))
     }
-
+    
+    
+    
+    
+    this.log(chalk.blue(`
+    
+    
+    ██████╗ ██████╗ ██╗  ██╗   ██╗██████╗ 
+    ██╔══██╗██╔══██╗██║  ╚██╗ ██╔╝██╔══██╗
+    ██║  ██║██████╔╝██║   ╚████╔╝ ██████╔╝
+    ██║  ██║██╔═══╝ ██║    ╚██╔╝  ██╔══██╗
+    ██████╔╝██║     ███████╗██║   ██║  ██║
+    ╚═════╝ ╚═╝     ╚══════╝╚═╝   ╚═╝  ╚═╝
+    
+    
+    
+    `))
+    this.log(chalk.green("SUCCESS SUCCESS SUCCESS SUCCESS SUCCESS"))
+    this.log(chalk.green("SUCCESS SUCCESS SUCCESS SUCCESS SUCCESS"))
+    this.log(chalk.green("             AUTH SUCCESS              "))
+    this.log(chalk.green("SUCCESS SUCCESS SUCCESS SUCCESS SUCCESS"))
+    this.log(chalk.green("SUCCESS SUCCESS SUCCESS SUCCESS SUCCESS"))
     this.exit(0)
   }
 }
