@@ -39,7 +39,11 @@
     "commands": "./lib/commands",
     "bin": "dplyr",
     "plugins": [
-      "@oclif/plugin-help"
+      "@oclif/plugin-help",
+      "@oclif/plugin-autocomplete",
+      "@oclif/plugin-update",
+      "https://github.com/oclif/plugin-help",
+      "@oclif/plugin-not-found"
     ]
   },
   "repository": "dplyr-dev/dplyr-cli",
