@@ -1,31 +1,31 @@
-import {Command, flags} from '@oclif/command'
+import { Command, flags } from '@oclif/command'
+import axios from 'axios'
+const fs = require('fs')
+const fse = require('fs-extra')
+const path = require('path')
 
 export default class Hello extends Command {
-  static description = 'describe the command here'
+  static description = 'Create A Machine takes name and type'
 
   static examples = [
-    `$ dplyr hello
+    `$ dplyr machines:ls
 hello world from ./src/hello.ts!
 `,
   ]
 
   static flags = {
-    help: flags.help({char: 'h'}),
-    // flag with a value (-n, --name=VALUE)
-    name: flags.string({char: 'n', description: 'name to print'}),
-    // flag with no value (-f, --force)
-    force: flags.boolean({char: 'f'}),
+    help: flags.help({ char: 'h' }),
+    type: flags.string({ char: 't', description: 'Type of Machine Either Pro or Ultimate', options: ['Pro', 'Ultimate'], required: true }),
+
   }
 
-  static args = [{name: 'file'}]
+  static args = [{ name: 'Machine Name', required: true }, { name: "machineType", options: ['a', 'b'], }]
 
   async run() {
-    const {args, flags} = this.parse(Hello)
-
-    const name = flags.name ?? 'world'
-    this.log(`hello ${name} from ./src/commands/hello.ts`)
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
-    }
+    const { args, flags } = this.parse(Hello)
+    var token = await fse.readJsonSync(path.join(__dirname, '..', '..', '..', 'config.json'))
+    console.log(token)
+    this.log(args["Machine Name"] + flags.type)
+    // axios.post("https://api.dplyr.dev/api/v1/machines/create")
   }
 }

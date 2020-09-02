@@ -1,6 +1,10 @@
 import { Command, flags } from '@oclif/command'
 var inquirer = require('inquirer')
 import axios from "axios"
+
+const fs = require('fs');
+const fse = require('fs-extra');
+const path = require('path');
 const chalk = require('chalk');
 
 export default class Hello extends Command {
@@ -14,20 +18,36 @@ hello world from ./src/hello.ts!
 
   static flags = {
     help: flags.help({ char: 'h' }),
-    // flag with a value (-n, --name=VALUE)
-    // name: flags.string({ char: 'n', description: 'name to print' }),
-    // flag with no value (-f, --force)
-    // force: flags.boolean({ char: 'f' }),
   }
 
-  // static args = [{ name: 'file' }]
 
   async run() {
-    const { args, flags } = this.parse(Hello)
+    const { args, flags } = this.parse(Hello);
+    var tokenff;
+    try {
+      tokenff = await fse.readJsonSync(path.join(__dirname, '..', '..', 'config.json'))
+
+    } catch (e) {
+      this.authenticate()
+      return;
+    }
+    if (tokenff?.token) {
+      this.log(chalk.red("User already exists"))
+      var deleteUser = await inquirer.prompt({ "type": "confirm", "name": "do", "message": "Do you want to delete the current user?" })
+      if (deleteUser.do) {
+        fse.removeSync(path.join(__dirname, "..", "..", "config.json"))
+        this.authenticate()
+      } else {
+        this.exit(0)
+      }
+    }
+
+  }
+  async authenticate() {
     var { token } = await inquirer.prompt({ "type": "input", "name": "token" })
     var req;
     try {
-      req = await axios.get("https://api.dplyr.dev/api/v1/requests/zapier", {
+      req = await axios.get("https://api.dplyr.dev/api/v1/requests/", {
         headers: {
           "Authorization": "Token " + token
         }
@@ -35,10 +55,14 @@ hello world from ./src/hello.ts!
     } catch (e) {
       this.error(chalk.red("AUTH FAILED"))
     }
-    
-    
-    
-    
+
+    const data = new Uint8Array(Buffer.from('{"token":"' + token + '"}'));
+
+    fs.writeFile(path.join(__dirname, "..", "..", "config.json"), data, (err: any) => {
+      if (err)
+        console.log(err)
+    })
+
     this.log(chalk.blue(`
     
     
@@ -57,6 +81,6 @@ hello world from ./src/hello.ts!
     this.log(chalk.green("             AUTH SUCCESS              "))
     this.log(chalk.green("SUCCESS SUCCESS SUCCESS SUCCESS SUCCESS"))
     this.log(chalk.green("SUCCESS SUCCESS SUCCESS SUCCESS SUCCESS"))
-    this.exit(0)
+    this.log(chalk.blue("Authintcated User: " + req.data.connectionLabel))
   }
 }
