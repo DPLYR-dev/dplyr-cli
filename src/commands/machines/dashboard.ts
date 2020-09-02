@@ -4,6 +4,7 @@ const path = require('path')
 const chalk = require("chalk")
 import axios from 'axios'
 import cli from 'cli-ux'
+const inquirer = require('inquirer')
 
 export default class Hello extends Command {
   static description = 'describe the command here'
@@ -24,35 +25,44 @@ hello world from ./src/hello.ts!
     const { args, flags } = this.parse(Hello)
     var token = await this.auth()
     var req = await axios.get("https://api.dplyr.dev/api/v1/machines", {
-      headers:{
-        "Authorization":"Token "+token
+      headers: {
+        "Authorization": "Token " + token
       }
     })
     var data = req.data;
-    var datar: Array<Object> = [];
+
+    cli.action.stop()
+    var list = await inquirer.prompt({ "type": "list", "name": "choosed", "message": "Choose the machine you want to open its dashboard", "choices": this.getChoicesList(data) })
+    var machine = this.getSingleMachineById(data, list.choosed)
+    this.log(chalk.blue(` Username: ` + machine.vmUsername))
+    this.log(chalk.blue(` Password: ` + machine.adminPassword))
+    cli.open("http://" + machine.publicIp + ":9090")
+    this.log(chalk.red(` URL: ` + "http://" + machine.publicIp + ":9090"))
+  }
+
+  getSingleMachineById(data: any, id: string) {
+    var returned;
     data.forEach((el: any) => {
-      delete el._id
-      delete el.userId
-      delete el.awsId
-      delete el.vmUsername
-      delete el.host
-      delete el.PublicIP
-      delete el.allocationId
-      delete el.createdAt
-      delete el.updatedAt
-      delete el.awsInfo
-      delete el.__v
-      delete el.dnsId
-      delete el.adminPassword
-      if (el.status){
-        
+      if (el._id === id)
+        returned = el;
+      else { }
+
+    });
+    if (!returned) {
+      return { "error": "Not Found Error E101 Contact the Support", "vmUsername": "Not Found Error E101 Contact the Support", "adminPassword": "Not Found Error E101 Contact the Support", "publicIp": "" };
+    }
+    return returned;
+  }
+  getChoicesList(data: any) {
+    var list: Array<Object> = []
+    data.forEach((el: any) => {
+      if (el.status) {
+
       } else {
-        
-        datar.push(el)
+        list.push({ "name": el.machineName, "value": el._id })
       }
     });
-    cli.action.stop()
-    console.table(datar)
+    return list;
   }
 
   auth = async (): Promise<string> => {
