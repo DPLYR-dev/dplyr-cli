@@ -36,9 +36,9 @@ export default class PreveiwFileManager extends Command {
     var machine = this.getSingleMachineById(data, list.choosed)
     // this.log(chalk.blue(` Username: ` + machine.vmUsername))
     // this.log(chalk.blue(` Password: ` + machine.adminPassword))
-    cli.open("https://file-manager.dplyr.dev/#/c/" + machine.vmUsername + "/" + machine.publicIp + "/" + base64url.encode(`{"t":"ftp","c":{"v":1,"p":"`+machine.adminPassword+`"}}`))
+    cli.open("https://file-manager.dplyr.dev/#/c/" + machine.publicIp + "/" + machine.vmUsername + "/" + base64url.encode(`{"t":"ftp","c":{"v":1,"p":"`+machine.adminPassword+`"}}`))
     // this.log(chalk.red(` URL: ` + "https://" + machine.publicIp + ":9090"))
-    this.log(chalk.red("https://file-manager.dplyr.dev/#/c/" + machine.vmUsername + "/" + machine.publicIp + "/" + base64url.encode(`{"t":"ftp","c":{"v":1,"p":"`+machine.adminPassword+`"}}`)))
+    this.log(chalk.red("https://file-manager.dplyr.dev/#/c/" + machine.publicIp + "/" + machine.vmUsername + "/" + base64url.encode(`{"t":"ftp","c":{"v":1,"p":"`+machine.adminPassword+`"}}`)))
   }
 
   getSingleMachineById(data: any, id: string) {
