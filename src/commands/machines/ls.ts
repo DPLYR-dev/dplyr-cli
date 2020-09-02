@@ -6,7 +6,7 @@ import axios from 'axios'
 import cli from 'cli-ux'
 
 export default class Hello extends Command {
-  static description = 'describe the command here'
+  static description = 'List All Machines Available'
 
   static examples = [
     `$ dplyr hello

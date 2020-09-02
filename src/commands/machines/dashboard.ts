@@ -7,7 +7,7 @@ import cli from 'cli-ux'
 const inquirer = require('inquirer')
 
 export default class Hello extends Command {
-  static description = 'describe the command here'
+  static description = 'Preview the Dashboard of the Machine'
 
   static examples = [
     `$ dplyr hello

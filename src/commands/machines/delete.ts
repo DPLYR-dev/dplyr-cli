@@ -1,7 +1,7 @@
 import {Command, flags} from '@oclif/command'
 
 export default class Hello extends Command {
-  static description = 'describe the command here'
+  static description = 'Delete a machine completely'
 
   static examples = [
     `$ dplyr hello

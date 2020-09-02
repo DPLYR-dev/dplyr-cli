@@ -8,7 +8,7 @@ const inquirer = require('inquirer')
 const base64url = require('base64-url')
 
 export default class Hello extends Command {
-  static description = 'describe the command here'
+  static description = 'Preview the file manager of the machine'
 
   static examples = [
     `$ dplyr hello

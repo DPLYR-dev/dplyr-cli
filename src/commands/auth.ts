@@ -8,11 +8,11 @@ const path = require('path');
 const chalk = require('chalk');
 
 export default class Auth extends Command {
-  static description = 'describe the command here'
+  static description = 'Authenticate into the CLI'
 
   static examples = [
-    `$ dplyr hello
-hello world from ./src/hello.ts!
+    `$ dplyr auth
+? token: TOKEN_FROM_DASHBOARD
 `,
   ]
 
