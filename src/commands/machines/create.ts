@@ -3,8 +3,9 @@ import axios from 'axios'
 const fs = require('fs')
 const fse = require('fs-extra')
 const path = require('path')
+const chalk = require("chalk")
 
-export default class Hello extends Command {
+export default class CreateMachine extends Command {
   static description = 'Create A Machine takes name and type'
 
   static examples = [
@@ -22,10 +23,29 @@ hello world from ./src/hello.ts!
   static args = [{ name: 'Machine Name', required: true }, { name: "machineType", options: ['a', 'b'], }]
 
   async run() {
-    const { args, flags } = this.parse(Hello)
-    var token = await fse.readJsonSync(path.join(__dirname, '..', '..', '..', 'config.json'))
+    const { args, flags } = this.parse(CreateMachine)
+    var token = await this.auth()
     console.log(token)
     this.log(args["Machine Name"] + flags.type)
-    // axios.post("https://api.dplyr.dev/api/v1/machines/create")
   }
+
+  auth = async (): Promise<string> => {
+    return new Promise<string>(async (resolve) => {
+      var reve = "false";
+      var token;
+      try {
+        token = await fse.readJsonSync(path.join(__dirname, '..', '..', '..', 'config.json'))
+        reve = token.token;
+      } catch (e) {
+        this.log(chalk.red(
+          `
+You have to be authenticated 
+Authenticate using '$ dplyr auth'
+`
+        ))
+        return;
+      }
+      resolve(reve);
+    });
+  };
 }

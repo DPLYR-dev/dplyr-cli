@@ -7,7 +7,7 @@ const fse = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
 
-export default class Hello extends Command {
+export default class Auth extends Command {
   static description = 'describe the command here'
 
   static examples = [
@@ -22,7 +22,7 @@ hello world from ./src/hello.ts!
 
 
   async run() {
-    const { args, flags } = this.parse(Hello);
+    const { args, flags } = this.parse(Auth);
     var tokenff;
     try {
       tokenff = await fse.readJsonSync(path.join(__dirname, '..', '..', 'config.json'))
@@ -33,6 +33,7 @@ hello world from ./src/hello.ts!
     }
     if (tokenff?.token) {
       this.log(chalk.red("User already exists"))
+      this.log(chalk.red("User currently existing: "+ tokenff.currentUser))
       var deleteUser = await inquirer.prompt({ "type": "confirm", "name": "do", "message": "Do you want to delete the current user?" })
       if (deleteUser.do) {
         fse.removeSync(path.join(__dirname, "..", "..", "config.json"))
@@ -56,12 +57,14 @@ hello world from ./src/hello.ts!
       this.error(chalk.red("AUTH FAILED"))
     }
 
-    const data = new Uint8Array(Buffer.from('{"token":"' + token + '"}'));
 
-    fs.writeFile(path.join(__dirname, "..", "..", "config.json"), data, (err: any) => {
-      if (err)
-        console.log(err)
-    })
+
+    var data = {
+      "token":token,
+      "currentUser":req.data.connectionLabel
+    }
+
+    await fse.writeJsonSync(path.join(__dirname, "..", "..", "config.json"), data)
 
     this.log(chalk.blue(`
     
