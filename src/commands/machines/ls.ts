@@ -5,7 +5,7 @@ const chalk = require("chalk")
 import axios from 'axios'
 import cli from 'cli-ux'
 
-export default class Hello extends Command {
+export default class ListMachines extends Command {
   static description = 'List All Machines Available'
 
   static examples = [
@@ -21,7 +21,7 @@ hello world from ./src/hello.ts!
 
   async run() {
     cli.action.start("Listing Machines")
-    const { args, flags } = this.parse(Hello)
+    const { args, flags } = this.parse(ListMachines)
     var token = await this.auth()
     var req = await axios.get("https://api.dplyr.dev/api/v1/machines", {
       headers:{

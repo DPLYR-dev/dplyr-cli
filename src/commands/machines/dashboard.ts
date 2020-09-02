@@ -6,7 +6,7 @@ import axios from 'axios'
 import cli from 'cli-ux'
 const inquirer = require('inquirer')
 
-export default class Hello extends Command {
+export default class PreviewDashboard extends Command {
   static description = 'Preview the Dashboard of the Machine'
 
   static examples = [
@@ -22,7 +22,7 @@ hello world from ./src/hello.ts!
 
   async run() {
     cli.action.start("Listing Machines")
-    const { args, flags } = this.parse(Hello)
+    const { args, flags } = this.parse(PreviewDashboard)
     var token = await this.auth()
     var req = await axios.get("https://api.dplyr.dev/api/v1/machines", {
       headers: {

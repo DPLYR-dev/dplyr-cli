@@ -7,7 +7,7 @@ import cli from 'cli-ux'
 const inquirer = require('inquirer')
 const base64url = require('base64-url')
 
-export default class Hello extends Command {
+export default class PreveiwFileManager extends Command {
   static description = 'Preview the file manager of the machine'
 
   static examples = [
@@ -23,7 +23,7 @@ hello world from ./src/hello.ts!
 
   async run() {
     cli.action.start("Listing Machines")
-    const { args, flags } = this.parse(Hello)
+    const { args, flags } = this.parse(PreveiwFileManager)
     var token = await this.auth()
     var req = await axios.get("https://api.dplyr.dev/api/v1/machines", {
       headers: {
