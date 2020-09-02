@@ -4,8 +4,7 @@ export default class CreateDeployment extends Command {
   static description = 'Create a deployment'
 
   static examples = [
-    `$ dplyr hello
-hello world from ./src/hello.ts!
+    `$ dplyr deployments:create
 `,
   ]
 

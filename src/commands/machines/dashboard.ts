@@ -10,8 +10,7 @@ export default class PreviewDashboard extends Command {
   static description = 'Preview the Dashboard of the Machine'
 
   static examples = [
-    `$ dplyr hello
-hello world from ./src/hello.ts!
+    `$ dplyr machines:dashboard
 `,
   ]
 

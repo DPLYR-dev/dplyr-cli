@@ -9,8 +9,7 @@ export default class ListMachines extends Command {
   static description = 'List All Machines Available'
 
   static examples = [
-    `$ dplyr hello
-hello world from ./src/hello.ts!
+    `$ dplyr machines:ls
 `,
   ]
 

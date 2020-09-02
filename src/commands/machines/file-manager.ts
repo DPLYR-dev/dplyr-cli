@@ -11,8 +11,7 @@ export default class PreveiwFileManager extends Command {
   static description = 'Preview the file manager of the machine'
 
   static examples = [
-    `$ dplyr hello
-hello world from ./src/hello.ts!
+    `$ dplyr machines:file-manager
 `,
   ]
 

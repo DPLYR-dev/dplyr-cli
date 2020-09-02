@@ -9,8 +9,7 @@ export default class CreateMachine extends Command {
   static description = 'Create A Machine takes name and type'
 
   static examples = [
-    `$ dplyr machines:ls
-hello world from ./src/hello.ts!
+    `$ dplyr machines:create
 `,
   ]
 

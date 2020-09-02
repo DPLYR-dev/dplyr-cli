@@ -4,8 +4,7 @@ export default class DeleteMachine extends Command {
   static description = 'Delete a machine completely'
 
   static examples = [
-    `$ dplyr hello
-hello world from ./src/hello.ts!
+    `$ dplyr machines:delete
 `,
   ]
 
