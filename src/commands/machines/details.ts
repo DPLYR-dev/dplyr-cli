@@ -33,13 +33,13 @@ export default class MachineInfo extends Command {
     cli.action.stop()
     var list = await inquirer.prompt({ "type": "list", "name": "choosed", "message": "Choose the machine you want to open its link", "choices": this.getChoicesList(data) })
     var machine = this.getSingleMachineById(data, list.choosed)
-    this.log(chalk.blue(` Name: `+"https://"+machine.host))
-    this.log(chalk.blue(` Type: `+machine.type))
-    this.log(chalk.blue(` Status: `+ machine.status ? machine.status: " Status: Running"))
-    this.log(chalk.blue(` URL: `+"https://"+machine.host))
-    this.log(chalk.blue(` Public IP: `+"http://"+machine.publicIp))
-    this.log(chalk.blue(` Admin Username: `+machine.vmUsername))
-    this.log(chalk.blue(` Admin Passowrd: `+machine.adminPassword))
+    // this.log(chalk.blue(` Name: `+"https://"+machine.host))
+    // this.log(chalk.blue(` Type: `+machine.type))
+    // this.log(chalk.blue(` Status: `+ machine.status ? machine.status: " Status: Running"))
+    // this.log(chalk.blue(` URL: `+"https://"+machine.host))
+    // this.log(chalk.blue(` Public IP: `+"http://"+machine.publicIp))
+    // this.log(chalk.blue(` Admin Username: `+machine.vmUsername))
+    // this.log(chalk.blue(` Admin Passowrd: `+machine.adminPassword))
   }
 
   getSingleMachineById(data: any, id: string) {
