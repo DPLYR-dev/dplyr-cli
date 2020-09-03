@@ -31,6 +31,7 @@ USAGE
 * [`dplyr auth`](#dplyr-auth)
 * [`dplyr autocomplete [SHELL]`](#dplyr-autocomplete-shell)
 * [`dplyr deployments:create`](#dplyr-deploymentscreate)
+* [`dplyr deployments:ls`](#dplyr-deploymentsls)
 * [`dplyr help [COMMAND]`](#dplyr-help-command)
 * [`dplyr machines:create MACHINE NAME [MACHINETYPE]`](#dplyr-machinescreate-machine-name-machinetype)
 * [`dplyr machines:dashboard`](#dplyr-machinesdashboard)
@@ -96,6 +97,23 @@ EXAMPLE
 ```
 
 _See code: [src/commands/deployments/create.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/deployments/create.ts)_
+
+## `dplyr deployments:ls`
+
+List All Deployments Available
+
+```
+USAGE
+  $ dplyr deployments:ls
+
+OPTIONS
+  -h, --help  show CLI help
+
+EXAMPLE
+  $ dplyr deployments:ls
+```
+
+_See code: [src/commands/deployments/ls.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/deployments/ls.ts)_
 
 ## `dplyr help [COMMAND]`
 
