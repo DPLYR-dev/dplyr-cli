@@ -12,7 +12,7 @@ export default class Auth extends Command {
 
   static examples = [
     `$ dplyr auth
-? token: TOKEN_FROM_DASHBOARD
+? API key: API_KEY_FROM_DASHBOARD
 `,
   ]
 
@@ -45,7 +45,7 @@ export default class Auth extends Command {
 
   }
   async authenticate() {
-    var { token } = await inquirer.prompt({ "type": "input", "name": "token" })
+    var { token } = await inquirer.prompt({ "type": "input", "name": "token", "message":"Enter you API key from Dashboard > Integrations" })
     var req;
     try {
       req = await axios.get("https://api.dplyr.dev/api/v1/requests/", {
