@@ -63,7 +63,7 @@
       }
     }
   },
-  "repository": "dplyr-dev/dplyr-cli",
+  "repository": "https://github.com/dplyr-dev/dplyr-cli",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
