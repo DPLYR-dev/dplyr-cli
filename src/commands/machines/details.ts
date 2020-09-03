@@ -5,13 +5,13 @@ const chalk = require("chalk")
 import axios from 'axios'
 import cli from 'cli-ux'
 const inquirer = require('inquirer')
-const isUndefined = require("is-undefined");
+const base64url = require('base64-url')
 
-export default class MachineInfo extends Command {
-  static description = 'See details about a machine'
+export default class MachineDetails extends Command {
+  static description = 'View the details of the machine'
 
   static examples = [
-    `$ dplyr machines:info
+    `$ dplyr machines:file-manager
 `,
   ]
 
@@ -22,7 +22,7 @@ export default class MachineInfo extends Command {
 
   async run() {
     cli.action.start("Listing Machines")
-    const { args, flags } = this.parse(MachineInfo)
+    const { args, flags } = this.parse(MachineDetails)
     var token = await this.auth()
     var req = await axios.get("https://api.dplyr.dev/api/v1/machines", {
       headers: {
@@ -30,9 +30,12 @@ export default class MachineInfo extends Command {
       }
     })
     var data = req.data;
+
     cli.action.stop()
-    var list = await inquirer.prompt({ "type": "list", "name": "choosed", "message": "Choose the machine you want to open its link", "choices": this.getChoicesList(data) })
+    var list = await inquirer.prompt({ "type": "list", "name": "choosed", "message": "Choose the machine you want to open its dashboard", "choices": this.getChoicesList(data) })
     var machine = this.getSingleMachineById(data, list.choosed)
+    var list = await inquirer.prompt({ "type": "list", "name": "choosed", "message": "Choose the machine you want to open its link", "choices": this.getChoicesList(data) })
+    // var machine = this.getSingleMachineById(data, list.choosed)
     // this.log(chalk.blue(` Name: `+"https://"+machine.host))
     // this.log(chalk.blue(` Type: `+machine.type))
     // this.log(chalk.blue(` Status: `+ machine.status ? machine.status: " Status: Running"))
@@ -48,27 +51,17 @@ export default class MachineInfo extends Command {
       if (el._id === id)
         returned = el;
       else { }
+
     });
-    if (!returned)
-      return { _id: '5f46dc40a662ff000bb1381f',
-      type: 'Pro',
-      machineName: 'Ahmed Metwaly',
-      vmUsername: 'ubuntu',
-      host: 'large-eel.dplyr.dev',
-      publicIp: '184.73.39.18',
-      dnsId: '59fd3b643332427b128406e78433f7e7',
-      adminPassword: 'Hello',
-      status:true,
-      createdAt: '2020-08-26T22:04:45.505Z',
-      updatedAt: '2020-08-26T22:04:45.505Z',
-      __v: 0 };
+    if (!returned) {
+      return { "error": "Not Found Error E101 Contact the Support", "vmUsername": "Not Found Error E101 Contact the Support", "adminPassword": "Not Found Error E101 Contact the Support", "publicIp": "" };
+    }
     return returned;
   }
-
   getChoicesList(data: any) {
     var list: Array<Object> = []
     data.forEach((el: any) => {
-      if (el.status) {
+      if (el.status === "deleted") {
 
       } else {
         list.push({ "name": el.machineName, "value": el._id })
