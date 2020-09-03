@@ -8,10 +8,10 @@ const inquirer = require('inquirer')
 const base64url = require('base64-url')
 
 export default class DeployemntDetails extends Command {
-  static description = 'View the details of the machine'
+  static description = 'View the details of the deployment'
 
   static examples = [
-    `$ dplyr machines:file-manager
+    `$ dplyr deployments:file-manager
 `,
   ]
 
