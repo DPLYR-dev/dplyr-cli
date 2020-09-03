@@ -24,6 +24,7 @@ export default class CreateDeployment extends Command {
   async run() {
     const { args, flags } = this.parse(CreateDeployment)
     var token = await this.auth()
+    var { name } = await inquirer.prompt({ "type": "input", "name": "name", "message": "Enter the deployment name" })
     var repo = await this.getRepo()
     var technology = await this.chooseTechnology()
     var database = await this.getDatabase()
@@ -34,6 +35,7 @@ export default class CreateDeployment extends Command {
 
 
   getMachine = async (token: string): Promise<Object> => {
+    cli.action.start("Getting Machines")
     return new Promise<Object>(async (resolve) => {
       var req = await axios.get("https://api.dplyr.dev/api/v1/machines", {
         headers: {
@@ -78,14 +80,14 @@ export default class CreateDeployment extends Command {
     return new Promise<Object>(async (resolve) => {
       var { dodatabase } = await inquirer.prompt({ "type": "confirm", "name": "dodatabase", "message": "Do you use a database?" })
       if (!dodatabase) {
-        resolve({ "database": false })
+        resolve({ "database": false, "name":"","type":"", "username":"", "password":"" })
         return;
       }
-      var { choosed } = await inquirer.prompt({ "type": "list", "message": "Enter your database of choice", "name": "choosed", "choices": [{ "name": "MongoDB", "value": "mongodb" }, { "name": "mysql", "value": "mysql" }] })
+      var { type } = await inquirer.prompt({ "type": "list", "message": "Enter your database of choice", "name": "type", "choices": [{ "name": "MongoDB", "value": "mongodb" }, { "name": "mysql", "value": "mysql" }] })
       var { name } = await inquirer.prompt({ "type": "input", "message": "Enter your database name:", "name": "name" })
       var { username } = await inquirer.prompt({ "type": "input", "message": "Enter your database username:", "name": "username" })
       var { password } = await inquirer.prompt({ "type": "password", "message": "Enter your git password:", "name": "password", "mask": true })
-      resolve({ "database": true, choosed, name, username, password })
+      resolve({ "database": true, type, name, username, password })
     })
   }
 
