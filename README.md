@@ -30,7 +30,7 @@ USAGE
 <!-- commands -->
 * [`dplyr auth`](#dplyr-auth)
 * [`dplyr autocomplete [SHELL]`](#dplyr-autocomplete-shell)
-* [`dplyr deployments:create [FILE]`](#dplyr-deploymentscreate-file)
+* [`dplyr deployments:create`](#dplyr-deploymentscreate)
 * [`dplyr help [COMMAND]`](#dplyr-help-command)
 * [`dplyr machines:create MACHINE NAME [MACHINETYPE]`](#dplyr-machinescreate-machine-name-machinetype)
 * [`dplyr machines:dashboard`](#dplyr-machinesdashboard)
@@ -80,13 +80,13 @@ EXAMPLES
 
 _See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v0.2.0/src/commands/autocomplete/index.ts)_
 
-## `dplyr deployments:create [FILE]`
+## `dplyr deployments:create`
 
 Create a deployment
 
 ```
 USAGE
-  $ dplyr deployments:create [FILE]
+  $ dplyr deployments:create
 
 OPTIONS
   -h, --help  show CLI help
