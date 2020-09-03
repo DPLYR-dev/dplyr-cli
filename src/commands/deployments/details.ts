@@ -24,7 +24,7 @@ export default class DeployemntDetails extends Command {
     cli.action.start("Listing Machines")
     const { args, flags } = this.parse(DeployemntDetails)
     var token = await this.auth()
-    var req = await axios.get("https://api.dplyr.dev/api/v1/machines", {
+    var req = await axios.get("https://api.dplyr.dev/api/v1/requests/zapier", {
       headers: {
         "Authorization": "Token " + token
       }
