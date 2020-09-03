@@ -51,7 +51,13 @@ export default class ListMachines extends Command {
       }
     });
     cli.action.stop()
-    console.table(datar)
+    this.log(chalk.blue(`For more details about a mchine run '$ dplyr machines:info "App Name"' `))
+    this.log(chalk.blue("Here's a list of your machines"))
+    this.log(chalk.blue("============"))
+    datar.forEach((el: any) => {
+      this.log(chalk.blue(el.machineName))
+    });
+    this.log(chalk.blue("============"))
   }
 
   auth = async (): Promise<string> => {
