@@ -39,7 +39,6 @@ export default class DeployemntDetails extends Command {
     this.log(chalk.blue(` URL: `+"https://"+machine.host))
     this.log(chalk.blue(` Public IP: `+"http://"+machine.publicIp))
     this.log(chalk.blue(` Git Repo: `+machine.vmUsername))
-    this.log(chalk.blue(` Admin Passowrd: `+machine.adminPassword))
   }
 
   getSingleMachineById(data: any, id: string) {
