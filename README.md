@@ -32,12 +32,14 @@ USAGE
 * [`dplyr autocomplete [SHELL]`](#dplyr-autocomplete-shell)
 * [`dplyr deployments:create`](#dplyr-deploymentscreate)
 * [`dplyr deployments:ls`](#dplyr-deploymentsls)
+* [`dplyr deployments:open`](#dplyr-deploymentsopen)
 * [`dplyr help [COMMAND]`](#dplyr-help-command)
 * [`dplyr machines:create MACHINE NAME [MACHINETYPE]`](#dplyr-machinescreate-machine-name-machinetype)
 * [`dplyr machines:dashboard`](#dplyr-machinesdashboard)
 * [`dplyr machines:delete [FILE]`](#dplyr-machinesdelete-file)
 * [`dplyr machines:file-manager`](#dplyr-machinesfile-manager)
 * [`dplyr machines:ls`](#dplyr-machinesls)
+* [`dplyr machines:open`](#dplyr-machinesopen)
 * [`dplyr update [CHANNEL]`](#dplyr-update-channel)
 
 ## `dplyr auth`
@@ -53,7 +55,7 @@ OPTIONS
 
 EXAMPLE
   $ dplyr auth
-  ? token: TOKEN_FROM_DASHBOARD
+  ? API key: API_KEY_FROM_DASHBOARD
 ```
 
 _See code: [src/commands/auth.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/auth.ts)_
@@ -114,6 +116,23 @@ EXAMPLE
 ```
 
 _See code: [src/commands/deployments/ls.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/deployments/ls.ts)_
+
+## `dplyr deployments:open`
+
+Open the Link of the Deployment
+
+```
+USAGE
+  $ dplyr deployments:open
+
+OPTIONS
+  -h, --help  show CLI help
+
+EXAMPLE
+  $ dplyr machines:open
+```
+
+_See code: [src/commands/deployments/open.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/deployments/open.ts)_
 
 ## `dplyr help [COMMAND]`
 
@@ -217,6 +236,23 @@ EXAMPLE
 ```
 
 _See code: [src/commands/machines/ls.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/machines/ls.ts)_
+
+## `dplyr machines:open`
+
+Open the Link of the Machine
+
+```
+USAGE
+  $ dplyr machines:open
+
+OPTIONS
+  -h, --help  show CLI help
+
+EXAMPLE
+  $ dplyr machines:open
+```
+
+_See code: [src/commands/machines/open.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/machines/open.ts)_
 
 ## `dplyr update [CHANNEL]`
 
