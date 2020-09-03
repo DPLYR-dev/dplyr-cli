@@ -29,10 +29,37 @@ export default class CreateDeployment extends Command {
     var technology = await this.chooseTechnology()
     var database = await this.getDatabase()
     var machine = await this.getMachine(token)
-    console.log(JSON.stringify(repo) + "   " + technology + "     " + JSON.stringify(database) + "     " + machine)
-
+    this.buildRequest(token, name, repo, technology, database, machine)
   }
 
+
+  buildRequest = async (token: string, name: string, repo: any, technology: string, database: any, machine: any): Promise<Object> => {
+    cli.action.start("DPLYRing")
+    return new Promise<Object>(async (resolve) => {
+
+      var request: any = {};
+      request.requestName = name;
+      request.isMachine = true;
+      request.host = machine.publicIp;
+      request.username = machine.vmUsername;
+      request.dnsHost = machine.host;
+      request.framework = technology;
+      request.database = database.type;
+      request.databaseName = database.name;
+      request.databaseUsername = database.username;
+      request.databasePassword = database.password;
+      var gitnamel = repo.repo.toString().split("/")
+      var gitname : string= (gitnamel[gitnamel.length - 2] + "/" + gitnamel[gitnamel.length - 1]).replace(".git", "")
+      request.fullGitName = gitname;
+      request.projectUrl = repo.repo;
+      request.githubUsername = repo.cred.username;
+      request.githubPassword = repo.cred.password;
+      // console.log(request)
+      await axios.post("https://api.dplyr.dev/api/v1/requests/create", request, {headers:{"Authorization":"Token "+ token}})
+      cli.action.stop()
+      resolve({})
+    })
+  }
 
   getMachine = async (token: string): Promise<Object> => {
     cli.action.start("Getting Machines")
@@ -46,7 +73,7 @@ export default class CreateDeployment extends Command {
 
       cli.action.stop()
       var list = await inquirer.prompt({ "type": "list", "name": "choosed", "message": "Choose the machine you want to deploy on", "choices": this.getMachinesList(data) })
-      resolve(this.getSingleMachineById(data, list.choosed)._id)
+      resolve(this.getSingleMachineById(data, list.choosed))
     })
   }
 
@@ -80,13 +107,13 @@ export default class CreateDeployment extends Command {
     return new Promise<Object>(async (resolve) => {
       var { dodatabase } = await inquirer.prompt({ "type": "confirm", "name": "dodatabase", "message": "Do you use a database?" })
       if (!dodatabase) {
-        resolve({ "database": false, "name":"","type":"", "username":"", "password":"" })
+        resolve({ "database": false, "name": "", "type": "", "username": "", "password": "" })
         return;
       }
-      var { type } = await inquirer.prompt({ "type": "list", "message": "Enter your database of choice", "name": "type", "choices": [{ "name": "MongoDB", "value": "mongodb" }, { "name": "mysql", "value": "mysql" }] })
+      var { type } = await inquirer.prompt({ "type": "list", "message": "Enter your database of choice", "name": "type", "choices": [{ "name": "MongoDB", "value": "MongoDB" }, { "name": "mysql", "value": "mysql" }] })
       var { name } = await inquirer.prompt({ "type": "input", "message": "Enter your database name:", "name": "name" })
       var { username } = await inquirer.prompt({ "type": "input", "message": "Enter your database username:", "name": "username" })
-      var { password } = await inquirer.prompt({ "type": "password", "message": "Enter your git password:", "name": "password", "mask": true })
+      var { password } = await inquirer.prompt({ "type": "password", "message": "Enter your database password:", "name": "password", "mask": true })
       resolve({ "database": true, type, name, username, password })
     })
   }
@@ -104,7 +131,7 @@ export default class CreateDeployment extends Command {
       cli.action.start("Analyzing your repo")
       prOrPb = axios.get(remotes[0].refs.push).then((data: any) => {
         cli.action.stop()
-        resolve({ "repo": remotes[0].refs.push, "visiblity": "public" })
+        resolve({ "repo": remotes[0].refs.push, "visiblity": "public", "cred": { "username": "", "password": "" } })
       }).catch(async (e) => {
         cli.action.stop()
         resolve({ "repo": remotes[0].refs.push, "visiblity": "private", "cred": await this.privateRepo() })
@@ -113,7 +140,7 @@ export default class CreateDeployment extends Command {
   }
 
   async chooseTechnology() {
-    var { choosed } = await inquirer.prompt({ "type": "list", "message": "Enter your technology of choice", "name": "choosed", "choices": [{ "name": "PHP", "value": "php" }, { "name": "Node.js", "value": "nodejs" }] })
+    var { choosed } = await inquirer.prompt({ "type": "list", "message": "Enter your technology of choice", "name": "choosed", "choices": [{ "name": "PHP", "value": "php" }, { "name": "Node.js", "value": "Node Js" }] })
     return choosed;
   }
 
