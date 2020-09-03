@@ -1,7 +1,7 @@
 {
   "name": "dplyr-cli",
   "description": "A CLI tool to manage DPLYR",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Ahmed Gamal @ahmedmgh67",
   "bin": {
     "dplyr": "./bin/run"
@@ -55,8 +55,12 @@
       "@oclif/plugin-update"
     ],
     "topics": {
-      "deployments": { "description": "Create and preview Deployments from here" },
-      "machines": { "description": "Create, delete, list and preview machines on DPLYR" }
+      "deployments": {
+        "description": "Create and preview Deployments from here"
+      },
+      "machines": {
+        "description": "Create, delete, list and preview machines on DPLYR"
+      }
     }
   },
   "repository": "dplyr-dev/dplyr-cli",
