@@ -51,7 +51,7 @@ export default class ListMachines extends Command {
       }
     });
     cli.action.stop()
-    this.log(chalk.blue(`For more details about a mchine run '$ dplyr machines:info "App Name"' `))
+    this.log(chalk.blue(`For more details about a machine run '$ dplyr machines:info "App Name"' `))
     this.log(chalk.blue("Here's a list of your machines"))
     this.log(chalk.blue("============"))
     datar.forEach((el: any) => {
