@@ -52,7 +52,13 @@ export default class ListDeployments extends Command {
       }
     });
     cli.action.stop()
-    console.table(datar)
+    this.log(chalk.blue(`For more details about a deployment run '$ dplyr deployments:info "App Name"' `))
+    this.log(chalk.blue("Here's a list of your deployments"))
+    this.log(chalk.blue("============"))
+    datar.forEach((el: any) => {
+      this.log(chalk.blue(el.requestName))
+    });
+    this.log(chalk.blue("============"))
   }
 
   auth = async (): Promise<string> => {
