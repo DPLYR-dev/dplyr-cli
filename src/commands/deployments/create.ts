@@ -1,4 +1,10 @@
 import {Command, flags} from '@oclif/command'
+const fse = require('fs-extra')
+const path = require('path')
+const chalk = require("chalk")
+import axios from 'axios'
+import cli from 'cli-ux'
+const inquirer = require('inquirer')
 
 export default class CreateDeployment extends Command {
   static description = 'Create a deployment'
@@ -12,7 +18,6 @@ export default class CreateDeployment extends Command {
     help: flags.help({char: 'h'})
   }
 
-  static args = [{name: 'file'}]
 
   async run() {
     const {args, flags} = this.parse(CreateDeployment)
