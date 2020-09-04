@@ -1,7 +1,7 @@
 {
   "name": "dplyr-cli",
   "description": "A CLI tool to manage DPLYR",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Ahmed Gamal @ahmedmgh67",
   "bin": {
     "dplyr": "./bin/run"
