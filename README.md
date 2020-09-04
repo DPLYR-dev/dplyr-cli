@@ -31,12 +31,14 @@ USAGE
 * [`dplyr auth`](#dplyr-auth)
 * [`dplyr autocomplete [SHELL]`](#dplyr-autocomplete-shell)
 * [`dplyr deployments:create`](#dplyr-deploymentscreate)
+* [`dplyr deployments:details`](#dplyr-deploymentsdetails)
 * [`dplyr deployments:ls`](#dplyr-deploymentsls)
 * [`dplyr deployments:open`](#dplyr-deploymentsopen)
 * [`dplyr help [COMMAND]`](#dplyr-help-command)
 * [`dplyr machines:create MACHINE NAME [MACHINETYPE]`](#dplyr-machinescreate-machine-name-machinetype)
 * [`dplyr machines:dashboard`](#dplyr-machinesdashboard)
 * [`dplyr machines:delete [FILE]`](#dplyr-machinesdelete-file)
+* [`dplyr machines:details`](#dplyr-machinesdetails)
 * [`dplyr machines:file-manager`](#dplyr-machinesfile-manager)
 * [`dplyr machines:ls`](#dplyr-machinesls)
 * [`dplyr machines:open`](#dplyr-machinesopen)
@@ -99,6 +101,23 @@ EXAMPLE
 ```
 
 _See code: [src/commands/deployments/create.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/deployments/create.ts)_
+
+## `dplyr deployments:details`
+
+View the details of the deployment
+
+```
+USAGE
+  $ dplyr deployments:details
+
+OPTIONS
+  -h, --help  show CLI help
+
+EXAMPLE
+  $ dplyr deployments:file-manager
+```
+
+_See code: [src/commands/deployments/details.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/deployments/details.ts)_
 
 ## `dplyr deployments:ls`
 
@@ -202,6 +221,23 @@ EXAMPLE
 ```
 
 _See code: [src/commands/machines/delete.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/machines/delete.ts)_
+
+## `dplyr machines:details`
+
+View the details of the machine
+
+```
+USAGE
+  $ dplyr machines:details
+
+OPTIONS
+  -h, --help  show CLI help
+
+EXAMPLE
+  $ dplyr machines:file-manager
+```
+
+_See code: [src/commands/machines/details.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/machines/details.ts)_
 
 ## `dplyr machines:file-manager`
 
