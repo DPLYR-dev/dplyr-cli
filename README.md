@@ -19,7 +19,7 @@ $ npm install -g dplyr-cli
 $ dplyr COMMAND
 running command...
 $ dplyr (-v|--version|version)
-dplyr-cli/0.0.2 darwin-x64 node-v10.6.0
+dplyr-cli/0.0.3 darwin-x64 node-v10.6.0
 $ dplyr --help [COMMAND]
 USAGE
   $ dplyr COMMAND
@@ -60,7 +60,7 @@ EXAMPLE
   ? API key: API_KEY_FROM_DASHBOARD
 ```
 
-_See code: [src/commands/auth.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/auth.ts)_
+_See code: [src/commands/auth.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.3/src/commands/auth.ts)_
 
 ## `dplyr autocomplete [SHELL]`
 
@@ -100,7 +100,7 @@ EXAMPLE
   $ dplyr deployments:create
 ```
 
-_See code: [src/commands/deployments/create.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/deployments/create.ts)_
+_See code: [src/commands/deployments/create.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.3/src/commands/deployments/create.ts)_
 
 ## `dplyr deployments:details`
 
@@ -117,7 +117,7 @@ EXAMPLE
   $ dplyr deployments:file-manager
 ```
 
-_See code: [src/commands/deployments/details.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/deployments/details.ts)_
+_See code: [src/commands/deployments/details.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.3/src/commands/deployments/details.ts)_
 
 ## `dplyr deployments:ls`
 
@@ -134,7 +134,7 @@ EXAMPLE
   $ dplyr deployments:ls
 ```
 
-_See code: [src/commands/deployments/ls.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/deployments/ls.ts)_
+_See code: [src/commands/deployments/ls.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.3/src/commands/deployments/ls.ts)_
 
 ## `dplyr deployments:open`
 
@@ -151,7 +151,7 @@ EXAMPLE
   $ dplyr machines:open
 ```
 
-_See code: [src/commands/deployments/open.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/deployments/open.ts)_
+_See code: [src/commands/deployments/open.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.3/src/commands/deployments/open.ts)_
 
 ## `dplyr help [COMMAND]`
 
@@ -186,7 +186,7 @@ EXAMPLE
   $ dplyr machines:create
 ```
 
-_See code: [src/commands/machines/create.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/machines/create.ts)_
+_See code: [src/commands/machines/create.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.3/src/commands/machines/create.ts)_
 
 ## `dplyr machines:dashboard`
 
@@ -203,7 +203,7 @@ EXAMPLE
   $ dplyr machines:dashboard
 ```
 
-_See code: [src/commands/machines/dashboard.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/machines/dashboard.ts)_
+_See code: [src/commands/machines/dashboard.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.3/src/commands/machines/dashboard.ts)_
 
 ## `dplyr machines:delete [FILE]`
 
@@ -220,7 +220,7 @@ EXAMPLE
   $ dplyr machines:delete
 ```
 
-_See code: [src/commands/machines/delete.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/machines/delete.ts)_
+_See code: [src/commands/machines/delete.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.3/src/commands/machines/delete.ts)_
 
 ## `dplyr machines:details`
 
@@ -237,7 +237,7 @@ EXAMPLE
   $ dplyr machines:file-manager
 ```
 
-_See code: [src/commands/machines/details.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/machines/details.ts)_
+_See code: [src/commands/machines/details.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.3/src/commands/machines/details.ts)_
 
 ## `dplyr machines:file-manager`
 
@@ -254,7 +254,7 @@ EXAMPLE
   $ dplyr machines:file-manager
 ```
 
-_See code: [src/commands/machines/file-manager.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/machines/file-manager.ts)_
+_See code: [src/commands/machines/file-manager.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.3/src/commands/machines/file-manager.ts)_
 
 ## `dplyr machines:ls`
 
@@ -271,7 +271,7 @@ EXAMPLE
   $ dplyr machines:ls
 ```
 
-_See code: [src/commands/machines/ls.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/machines/ls.ts)_
+_See code: [src/commands/machines/ls.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.3/src/commands/machines/ls.ts)_
 
 ## `dplyr machines:open`
 
@@ -288,7 +288,7 @@ EXAMPLE
   $ dplyr machines:open
 ```
 
-_See code: [src/commands/machines/open.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.2/src/commands/machines/open.ts)_
+_See code: [src/commands/machines/open.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.3/src/commands/machines/open.ts)_
 
 ## `dplyr update [CHANNEL]`
 
