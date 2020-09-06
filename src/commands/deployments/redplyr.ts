@@ -34,22 +34,13 @@ export default class Redplyr extends Command {
 
     cli.action.stop()
     if (!flags.deploymentId) {
-      var list = await inquirer.prompt({ "type": "list", "name": "choosed", "message": "Choose the machine you want to open its dashboard", "choices": this.getChoicesList(data) })
+      var list = await inquirer.prompt({ "type": "list", "name": "choosed", "message": "Choose the deployment you want to ReDPLYR", "choices": this.getChoicesList(data) })
       var machine = this.getSingleMachineById(data, list.choosed)
 
     } else {
 
       var machine = this.getSingleMachineById(data, flags.deploymentId)
     }
-//     var { yes } = await inquirer.prompt({
-//       "type": "", "name": "yes", "message": `Are you sure you want to delete this Machine
-// ${machine.machineName}
-// ${machine.publicIp}
-// You can't undo this action, all the machine data and everything will be completely deleted forever
-// (y / n)
-//     `})
-//     if (!yes)
-//       return;
     cli.action.start("ReDPLYRing")
     var reqt = await axios.post("https://api.dplyr.dev/api/v1/requests/redplyr-zapier", { "requestId": machine._id }, {
       headers: {
@@ -79,7 +70,7 @@ export default class Redplyr extends Command {
       if (el.status) {
 
       } else {
-        list.push({ "name": el.machineName, "value": el._id })
+        list.push({ "name": el.requestName, "value": el._id })
       }
     });
     return list;
