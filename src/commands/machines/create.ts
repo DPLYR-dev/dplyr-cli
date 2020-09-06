@@ -15,17 +15,17 @@ export default class CreateMachine extends Command {
 
   static flags = {
     help: flags.help({ char: 'h' }),
-    type: flags.string({ char: 't', description: 'Type of Machine Either Pro or Ultimate', options: ['Pro', 'Ultimate'], required: true }),
-
+    name: flags.string({ required: false, name: "name", char: "n" })
   }
 
-  static args = [{ name: 'Machine Name', required: true }, { name: "machineType", options: ['a', 'b'], }]
+  static args = []
 
   async run() {
     const { args, flags } = this.parse(CreateMachine)
     var token = await this.auth()
     console.log(token)
-    this.log(args["Machine Name"] + flags.type)
+    console.log(flags.name)
+    // this.log(args["Machine Name"] + flags.type)
   }
 
   auth = async (): Promise<string> => {
