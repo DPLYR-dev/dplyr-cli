@@ -21,6 +21,8 @@ export default class Deploy extends Command {
   async run() {
     const { args, flags } = this.parse(Deploy)
     var token = await this.auth()
+    await CreateMachine.run([])
+    await CreateDeployment.run([])
   }
 
   auth = async (): Promise<string> => {
