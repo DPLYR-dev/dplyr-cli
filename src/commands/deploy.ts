@@ -30,7 +30,7 @@ export default class Deploy extends Command {
       var reve = "false";
       var token;
       try {
-        token = await fse.readJsonSync(path.join(__dirname, '..', '..', '..', 'config.json'))
+        token = await fse.readJsonSync(path.join(__dirname, '..', '..', 'config.json'))
         reve = token.token;
       } catch (e) {
         this.log(chalk.red(
