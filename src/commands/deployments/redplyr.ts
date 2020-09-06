@@ -16,6 +16,7 @@ export default class Redplyr extends Command {
 
   static flags = {
     help: flags.help({ char: 'h' }),
+    deploymentId: flags.string({ required: false, name: "deploymentId", char: "i" })
   }
 
   static args = [{ name: 'file' }]
@@ -32,19 +33,25 @@ export default class Redplyr extends Command {
     var data = req.data;
 
     cli.action.stop()
-    var list = await inquirer.prompt({ "type": "list", "name": "choosed", "message": "Choose the machine you want to open its dashboard", "choices": this.getChoicesList(data) })
-    var machine = this.getSingleMachineById(data, list.choosed)
-    var { yes } = await inquirer.prompt({
-      "type": "", "name": "yes", "message": `Are you sure you want to delete this Machine
-${machine.machineName}
-${machine.publicIp}
-You can't undo this action, all the machine data and everything will be completely deleted forever
-(y / n)
-    `})
-    if (!yes)
-      return;
-    cli.action.start("Deleting Machine")
-    var reqt = await axios.post("https://api.dplyr.dev/api/v1/requests/redplyr-zapier", {"machineId":machine._id}, {
+    if (!flags.deploymentId) {
+      var list = await inquirer.prompt({ "type": "list", "name": "choosed", "message": "Choose the machine you want to open its dashboard", "choices": this.getChoicesList(data) })
+      var machine = this.getSingleMachineById(data, list.choosed)
+
+    } else {
+
+      var machine = this.getSingleMachineById(data, flags.deploymentId)
+    }
+//     var { yes } = await inquirer.prompt({
+//       "type": "", "name": "yes", "message": `Are you sure you want to delete this Machine
+// ${machine.machineName}
+// ${machine.publicIp}
+// You can't undo this action, all the machine data and everything will be completely deleted forever
+// (y / n)
+//     `})
+//     if (!yes)
+//       return;
+    cli.action.start("ReDPLYRing")
+    var reqt = await axios.post("https://api.dplyr.dev/api/v1/requests/redplyr-zapier", { "requestId": machine._id }, {
       headers: {
         "Authorization": "Token " + token
       }
@@ -62,7 +69,7 @@ You can't undo this action, all the machine data and everything will be complete
 
     });
     if (!returned) {
-      return { "error": "Not Found Error E101 Contact the Support", "vmUsername": "Not Found Error E101 Contact the Support", "adminPassword": "Not Found Error E101 Contact the Support", "publicIp": "", "machineName": "", "_id":"Doesn't exist" };
+      return { "error": "Not Found Error E101 Contact the Support", "vmUsername": "Not Found Error E101 Contact the Support", "adminPassword": "Not Found Error E101 Contact the Support", "publicIp": "", "machineName": "", "_id": "Doesn't exist" };
     }
     return returned;
   }
