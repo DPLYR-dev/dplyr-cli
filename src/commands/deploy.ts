@@ -2,7 +2,8 @@ import { Command, flags } from '@oclif/command'
 const fse = require('fs-extra')
 const path = require('path')
 const chalk = require("chalk")
-import {}from "./machines/create"
+import CreateMachine from "./machines/create"
+import CreateDeployment from "./deployments/create"
 
 export default class Deploy extends Command {
   static description = 'Deploy a project in a single command'
