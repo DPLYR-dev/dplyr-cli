@@ -6,11 +6,11 @@ import axios from 'axios'
 import cli from 'cli-ux'
 const inquirer = require('inquirer')
 
-export default class DeleteMachine extends Command {
-  static description = 'Delete a machine completely'
+export default class Redplyr extends Command {
+  static description = 'ReDPLYR a deployment'
 
   static examples = [
-    `$ dplyr machines:delete
+    `$ dplyr deployments:redplyr
 `,
   ]
 
@@ -22,7 +22,7 @@ export default class DeleteMachine extends Command {
 
   async run() {
     cli.action.start("Listing Machines")
-    const { args, flags } = this.parse(DeleteMachine)
+    const { args, flags } = this.parse(Redplyr)
     var token = await this.auth()
     var req = await axios.get("https://api.dplyr.dev/api/v1/machines", {
       headers: {
