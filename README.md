@@ -30,12 +30,14 @@ USAGE
 <!-- commands -->
 * [`dplyr auth`](#dplyr-auth)
 * [`dplyr autocomplete [SHELL]`](#dplyr-autocomplete-shell)
+* [`dplyr deploy`](#dplyr-deploy)
 * [`dplyr deployments:create`](#dplyr-deploymentscreate)
 * [`dplyr deployments:details`](#dplyr-deploymentsdetails)
 * [`dplyr deployments:ls`](#dplyr-deploymentsls)
 * [`dplyr deployments:open`](#dplyr-deploymentsopen)
+* [`dplyr deployments:redplyr [FILE]`](#dplyr-deploymentsredplyr-file)
 * [`dplyr help [COMMAND]`](#dplyr-help-command)
-* [`dplyr machines:create MACHINE NAME [MACHINETYPE]`](#dplyr-machinescreate-machine-name-machinetype)
+* [`dplyr machines:create`](#dplyr-machinescreate)
 * [`dplyr machines:dashboard`](#dplyr-machinesdashboard)
 * [`dplyr machines:delete [FILE]`](#dplyr-machinesdelete-file)
 * [`dplyr machines:details`](#dplyr-machinesdetails)
@@ -85,6 +87,23 @@ EXAMPLES
 
 _See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v0.2.0/src/commands/autocomplete/index.ts)_
 
+## `dplyr deploy`
+
+Deploy a project in a single command
+
+```
+USAGE
+  $ dplyr deploy
+
+OPTIONS
+  -h, --help  show CLI help
+
+EXAMPLE
+  $ dplyr deploy
+```
+
+_See code: [src/commands/deploy.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.3/src/commands/deploy.ts)_
+
 ## `dplyr deployments:create`
 
 Create a deployment
@@ -94,7 +113,8 @@ USAGE
   $ dplyr deployments:create
 
 OPTIONS
-  -h, --help  show CLI help
+  -h, --help       show CLI help
+  -n, --name=name
 
 EXAMPLE
   $ dplyr deployments:create
@@ -153,6 +173,24 @@ EXAMPLE
 
 _See code: [src/commands/deployments/open.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.3/src/commands/deployments/open.ts)_
 
+## `dplyr deployments:redplyr [FILE]`
+
+ReDPLYR a deployment
+
+```
+USAGE
+  $ dplyr deployments:redplyr [FILE]
+
+OPTIONS
+  -h, --help                       show CLI help
+  -i, --deploymentId=deploymentId
+
+EXAMPLE
+  $ dplyr deployments:redplyr
+```
+
+_See code: [src/commands/deployments/redplyr.ts](https://github.com/dplyr-dev/dplyr-cli/blob/v0.0.3/src/commands/deployments/redplyr.ts)_
+
 ## `dplyr help [COMMAND]`
 
 display help for dplyr
@@ -170,17 +208,17 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.0/src/commands/help.ts)_
 
-## `dplyr machines:create MACHINE NAME [MACHINETYPE]`
+## `dplyr machines:create`
 
 Create A Machine takes name and type
 
 ```
 USAGE
-  $ dplyr machines:create MACHINE NAME [MACHINETYPE]
+  $ dplyr machines:create
 
 OPTIONS
-  -h, --help               show CLI help
-  -t, --type=Pro|Ultimate  (required) Type of Machine Either Pro or Ultimate
+  -h, --help       show CLI help
+  -n, --name=name
 
 EXAMPLE
   $ dplyr machines:create
