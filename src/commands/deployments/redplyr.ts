@@ -21,10 +21,10 @@ export default class Redplyr extends Command {
   static args = [{ name: 'file' }]
 
   async run() {
-    cli.action.start("Listing Machines")
+    cli.action.start("Listing Deployments")
     const { args, flags } = this.parse(Redplyr)
     var token = await this.auth()
-    var req = await axios.get("https://api.dplyr.dev/api/v1/machines", {
+    var req = await axios.get("https://api.dplyr.dev/api/v1/requests/zapier", {
       headers: {
         "Authorization": "Token " + token
       }
@@ -44,13 +44,13 @@ You can't undo this action, all the machine data and everything will be complete
     if (!yes)
       return;
     cli.action.start("Deleting Machine")
-    var reqt = await axios.post("https://api.dplyr.dev/api/v1/machines/delete", {"machineId":machine._id}, {
+    var reqt = await axios.post("https://api.dplyr.dev/api/v1/requests/redplyr-zapier", {"machineId":machine._id}, {
       headers: {
         "Authorization": "Token " + token
       }
     })
     cli.action.stop();
-    this.log(chalk.blue("Successfully Deleted!"))
+    this.log(chalk.blue("Successfully ReDPLYRed!"))
   }
 
   getSingleMachineById(data: any, id: string) {
