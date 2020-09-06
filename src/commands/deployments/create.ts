@@ -17,14 +17,19 @@ export default class CreateDeployment extends Command {
   ]
 
   static flags = {
-    help: flags.help({ char: 'h' })
+    help: flags.help({ char: 'h' }),
+    name: flags.string({ required: false, name: "name", char: "n" })
   }
 
 
   async run() {
     const { args, flags } = this.parse(CreateDeployment)
     var token = await this.auth()
-    var { name } = await inquirer.prompt({ "type": "input", "name": "name", "message": "Enter the deployment name" })
+    if (!args.name) {
+      var { name } = await inquirer.prompt({ "type": "input", "name": "name", "message": "Enter the deployment name" })
+    } else {
+      var name = args.name
+    }
     var repo = await this.getRepo()
     var technology = await this.chooseTechnology()
     var database = await this.getDatabase()
@@ -49,13 +54,13 @@ export default class CreateDeployment extends Command {
       request.databaseUsername = database.username;
       request.databasePassword = database.password;
       var gitnamel = repo.repo.toString().split("/")
-      var gitname : string= (gitnamel[gitnamel.length - 2] + "/" + gitnamel[gitnamel.length - 1]).replace(".git", "")
+      var gitname: string = (gitnamel[gitnamel.length - 2] + "/" + gitnamel[gitnamel.length - 1]).replace(".git", "")
       request.fullGitName = gitname;
       request.projectUrl = repo.repo;
       request.githubUsername = repo.cred.username;
       request.githubPassword = repo.cred.password;
       // console.log(request)
-      await axios.post("https://api.dplyr.dev/api/v1/requests/create", request, {headers:{"Authorization":"Token "+ token}})
+      await axios.post("https://api.dplyr.dev/api/v1/requests/create", request, { headers: { "Authorization": "Token " + token } })
       cli.action.stop()
       resolve({})
     })
